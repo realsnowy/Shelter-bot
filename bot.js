@@ -32,5 +32,17 @@ client.on("guildMemberRemove", async member => {
   member.guild.channels.get("510536319311675432").setTopic(`The main place for chatting.‍ ‍  ‍ ‍‍Total members: ${NumberToEmoji(member.guild.memberCount)}`)
 });
 
+client.on("voiceStateUpdate", (oldMember, newMember, member) => {
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
+
+
+  if(oldUserChannel === undefined && newUserChannel !== undefined) {
+    member.addRole("510591770158039050");
+  } else if(newUserChannel === undefined){
+    member.removeRole("510591770158039050");
+  }
+});
+
 
 client.login(process.env.BOT_TOKEN);
