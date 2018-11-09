@@ -1,0 +1,7 @@
+{
+  "name": "shelter-bot",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
