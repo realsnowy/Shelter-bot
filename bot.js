@@ -11,6 +11,11 @@ function NumberToEmoji(_numbers) {
   return text;
 }
 
+function attachIsImage(msgAttach) {
+    var url = msgAttach.url;
+    return url.indexOf("png", url.length - "png".length) !== -1;
+}
+
 client.on("ready", async () => {
   console.log(`Bot has started in ${client.guilds.size} guilds.`);
   client.user.setActivity(`The Emoji Movie`, { type: "WATCHING" });
@@ -22,6 +27,14 @@ client.on("message", async message => {
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+
+  if (message.attachments.size > 0) {
+    if (message.attachments.every(attachIsImage)){
+        return;
+    } else {
+      message.delete();
+    }
+}
 });
 
 client.on("guildMemberAdd", async member => {
