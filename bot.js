@@ -29,11 +29,10 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
 
   if (message.attachments.size > 0) {
-    if (message.attachments.every(attachIsImage)){
+    if (message.attachments.every(attachIsImage)) {
         return;
-    } else {
+    } else
       message.delete();
-    }
 }
 });
 
